@@ -44,7 +44,7 @@ uint64_t Calcul_true_K16(int Solution[8][6][64] , int Nbr_Solutions[8][6], int n
 	
 
 // Afficher la solution trouvée à la sortie de chaque S-box
-void affiche_Solutin_SBox(int Nbr_Solutions[8][6], int Solution[8][6][64], int num_Sbox, long *chiffreFaux, int faux[8][6]){
+void affiche_Solutin_SBox(int Nbr_Solutions[8][6], int Solution[8][6][64], int num_Sbox, long *chiffreFaux, int BitsFaux[8][6]){
 
 		int f;
 		int k;
@@ -53,7 +53,7 @@ void affiche_Solutin_SBox(int Nbr_Solutions[8][6], int Solution[8][6][64], int n
 		for (f = 0; f < 6; f++) 
 		{
 			for(k=0; k<32; k++){
-				if(chiffreFaux[faux[num_Sbox][f]]==chiffreFaux[k])
+				if(chiffreFaux[BitsFaux[num_Sbox][f]]==chiffreFaux[k])
 					printf("Le chiffré faux n°%d : %d solutions\t",k+1, Nbr_Solutions[num_Sbox][f]);
 
 			}
@@ -78,27 +78,10 @@ uint64_t get_K16(uint64_t chiffreJuste, long chiffreFaux[])
 	uint32_t  tmp, tmpf;
 	int num_chiffre_faux;
 	
-	
 	//2^6 solutions possibles  des 6 fautes pour les 8 Sbox
 	int Solution[8][6][64] = {{{0}}};
 	//Nombre de solutions possibles pour 6 chiffres faux sur les 8 Sbox 
 	int Nbr_Solutions[8][6] = {{0}};
-	
-	
-	/*
-		*On va attasue chaque S-box par 6 chiffrés faut donc il faut un total de 32 chiffres
-		*Chaque attaque change qu'un seul bit de R15 
-	*/	
-	int faux[8][6] = {
-		{0, 31, 30, 29, 28, 27},
-		{28, 27, 26, 25, 24, 23},
-		{24, 23, 22, 21, 20, 19},
-		{20, 19, 18, 17, 16, 15},
-		{16, 15, 14, 13, 12, 11},
-		{12, 11, 10, 9, 8, 7},
-		{8, 7, 6, 5, 4, 3},
-		{4, 3, 2, 1, 0, 31}
-	};
 	
 	//Calcule de L16 et R16 a partir d'un chiffre juste
 	dechiffJuste = Permutation(chiffreJuste, IP, 64, 64); 
@@ -116,7 +99,7 @@ uint64_t get_K16(uint64_t chiffreJuste, long chiffreFaux[])
 		{
 			//Attaque d'une S-Box par 6 chiffres faux
 
-			dechiffFaux = Permutation(chiffreFaux[faux[num_Sbox][f]], IP, 64, 64);
+			dechiffFaux = Permutation(chiffreFaux[BitsFaux[num_Sbox][f]], IP, 64, 64);
 			L_f_16 = (dechiffFaux >> 32) & 0xFFFFFFFFL; 
 			R_f_15 = dechiffFaux & 0xFFFFFFFFL;
 	
@@ -152,7 +135,7 @@ uint64_t get_K16(uint64_t chiffreJuste, long chiffreFaux[])
 		}
 		
 		//Affichage des solutions pour chaque faute de chaque Sbox
-		affiche_Solutin_SBox(Nbr_Solutions,Solution,num_Sbox,chiffreFaux,faux);
+		affiche_Solutin_SBox(Nbr_Solutions,Solution,num_Sbox,chiffreFaux,BitsFaux);
 		//Pour trouver la bonne cle K16
 		K16=Calcul_true_K16(Solution, Nbr_Solutions,num_Sbox,K16);
 	}

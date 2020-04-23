@@ -14,28 +14,29 @@
 
  */
 
-long Permutation(uint64_t msg, int table[] ,int tailleOfBits_in, int tailleOfBits_out) {
-		
+long Permutation(uint64_t msg, int table[], int tailleOfBits_in, int tailleOfBits_out)
+{
+
 	long resultat = 0x0L;
 	long bit_position = 0x1L;
 	long tmp;
-	
 
-	for (int i = 0; i < tailleOfBits_out; i++) 
+	for (int i = 0; i < tailleOfBits_out; i++)
 	{
 
 		tmp = bit_position << (tailleOfBits_in - table[i]);
-		
+
 		//On charge le bit de msg à cette position table[i]
 		tmp = msg & tmp;
-		
-		//si le bit vaut 1 on le laisse a la position actuelle 
-		if (tmp != 0){
+
+		//si le bit vaut 1 on le laisse a la position actuelle
+		if (tmp != 0)
+		{
 			//On met le bit a 1 dans sa position
 			tmp = 0x1L;
 			tmp = tmp << (tailleOfBits_out - i - 1);
-		} 
-		
+		}
+
 		//melange le nouveau bit avec resultat
 		resultat = resultat | tmp;
 	}

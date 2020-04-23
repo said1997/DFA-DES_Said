@@ -5,5 +5,7 @@ message chiffré ainsi qu’un ensemble de 32 de messages chiffrés faux obtenus
 15ème tour de fiestel , cela veut dire que l’attaquant doit changer un seul bit parmi les 32 bits de R 15.
 
 -Pour compiler l'application taper dans le términal make.
+
 -Pour l'ancer l'attaque taper dans le términal make run.
+
 -Pour supprimer tout les dépendance taper make clean.

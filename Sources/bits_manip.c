@@ -6,8 +6,6 @@
 #include "../Header/bits_manip.h"
 #include "../Header/Tables_Of_Permutation.h"
 
-
- 
 // Cette fonction permet de shifter à droite de b decalage
 uint64_t ShiftDroit(uint64_t msg, int b)
 {
@@ -26,14 +24,14 @@ uint64_t AND_Binary(uint64_t a, uint64_t b)
 	return (a & b);
 }
 
-// Fonction qui permet de concatener 
-uint64_t concat(uint64_t a,uint64_t b)
+// Fonction qui permet de concatener
+uint64_t concat(uint64_t a, uint64_t b)
 {
 	return (a | b);
 }
 
 //Fonction qui fait un OR exclusif
-uint64_t OR_exclusif(uint64_t a,uint64_t b)
+uint64_t OR_exclusif(uint64_t a, uint64_t b)
 {
 	return (a ^ b);
 }
