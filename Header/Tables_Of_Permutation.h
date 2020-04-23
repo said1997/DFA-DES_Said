@@ -160,22 +160,6 @@ static int PC2_Inv[] =
 		38, 45, 33, 26, 42, 0,
 		30, 40};
 
-/*  
-		*Chaque attaque change qu'un seul bit de R15
-		*On va attasue chaque S-box par 6 chiffrés faut donc il faut un total de 32 chiffres
-		*Chaque ligne représente une S-box et chaque colonne ses 6 chéffrés correspendant
-		 
-	*/
-int BitsFaux[8][6] = {
-	{0, 31, 30, 29, 28, 27},
-	{28, 27, 26, 25, 24, 23},
-	{24, 23, 22, 21, 20, 19},
-	{20, 19, 18, 17, 16, 15},
-	{16, 15, 14, 13, 12, 11},
-	{12, 11, 10, 9, 8, 7},
-	{8, 7, 6, 5, 4, 3},
-	{4, 3, 2, 1, 0, 31}};
-
 static long get_4bits[] =
 	{
 		0xF0000000,
