@@ -37,7 +37,6 @@ long Permutation(uint64_t msg, int table[], int tailleOfBits_in, int tailleOfBit
 			tmp = tmp << (tailleOfBits_out - i - 1);
 		}
 
-		//melange le nouveau bit avec resultat
 		resultat = resultat | tmp;
 	}
 	return resultat;

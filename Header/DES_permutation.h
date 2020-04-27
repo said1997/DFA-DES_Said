@@ -3,7 +3,6 @@
 
 // permutation des bits
 
-
-long Permutation(uint64_t , int[], int, int);
+long Permutation(uint64_t, int[], int, int);
 
 #endif

@@ -3,6 +3,6 @@
 
 // Algo de chiffrement DES
 
-long DES(uint64_t,uint64_t );
+long DES(uint64_t, uint64_t);
 
 #endif
